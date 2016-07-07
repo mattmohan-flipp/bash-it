@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-THEME_PROMPT_SEPARATOR=""
+THEME_PROMPT_SEPARATOR=" "
 
 SHELL_SSH_CHAR=" "
 SHELL_THEME_PROMPT_COLOR=32
 SHELL_THEME_PROMPT_COLOR_SUDO=202
 
 VIRTUALENV_CHAR="ⓔ "
-VIRTUALENV_THEME_PROMPT_COLOR=35
+VIRTUALENV_THEME_PROMPT_COLOR=238
 
 SCM_NONE_CHAR=""
-SCM_GIT_CHAR=" "
+SCM_GIT_CHAR=" "
 
 SCM_THEME_PROMPT_CLEAN=""
 SCM_THEME_PROMPT_DIRTY=""
@@ -57,7 +57,9 @@ function powerline_shell_prompt {
 function powerline_virtualenv_prompt {
     local environ=""
 
-    if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+    if [[ -n "$rvm_version" && $(rvm tools identifier) != $(rvm strings default) ]]; then
+        environ="$RUBY_VERSION"
+    elif [[ -n "$CONDA_DEFAULT_ENV" ]]; then
         environ="conda: $CONDA_DEFAULT_ENV"
     elif [[ -n "$VIRTUAL_ENV" ]]; then
         environ=$(basename "$VIRTUAL_ENV")
