@@ -131,5 +131,5 @@ function powerline_prompt_command() {
     PS1="${SHELL_PROMPT}${IN_VIM_PROMPT}${VIRTUALENV_PROMPT}${SCM_PROMPT}${CWD_PROMPT}${LAST_STATUS_PROMPT} "
 }
 
-PROMPT_COMMAND=powerline_prompt_command
+safe_append_prompt_command powerline_prompt_command
 
